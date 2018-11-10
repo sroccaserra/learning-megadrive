@@ -22,4 +22,5 @@ Open the generated `bin/learn.bin` file in your favourite Mega Drive emulator, i
 
 - vasm assembler: <http://sun.hasenbraten.de/vasm/index.php?view=main>
 - Startup kit: <https://www.youtube.com/watch?v=PSYhSmXBgIw>
-- Tutorial: <https://huguesjohnson.com/programming/genesis/palettes/>
+- 68000 instructions tutorial: <http://mrjester.hapisan.com/04_MC68/Index.html>
+- Another Mega Drive tutorial: <https://huguesjohnson.com/programming/genesis/palettes/>

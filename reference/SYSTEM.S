@@ -44,6 +44,34 @@ MDSCTRL1:	EQU	$00A10013
 MDSCTRL2:	EQU	$00A10019
 MDSCTRL3:	EQU	$00A1001f
 
+J_UP:		EQU	0
+J_DOWN:		EQU	1
+J_LEFT:		EQU	2
+J_RIGHT:	EQU	3
+
+;SPRITE STUFF
+S_1X1:		EQU	0<<8
+S_1X2:		EQU	1<<8
+S_1X3:		EQU	2<<8
+S_1X4:		EQU	3<<8
+S_2X1:		EQU	4<<8
+S_2X2:		EQU	5<<8
+S_2X3:		EQU	6<<8
+S_2X4:		EQU	7<<8
+S_3X1:		EQU	8<<8
+S_3X2:		EQU	9<<8
+S_3X3:		EQU	10<<8
+S_3X4:		EQU	11<<8
+S_4X1:		EQU	12<<8
+S_4X2:		EQU	13<<8
+S_4X3:		EQU	14<<8
+S_4X4:		EQU	15<<8
+
+S_PAL1:		EQU	$0000
+S_PAL2:		EQU	$2000
+S_PAL3:		EQU	$4000
+S_PAL4:		EQU	$6000
+
 ;----------------------------------------------------------
 ;		USEFUL MACROS
 ;----------------------------------------------------------
@@ -115,6 +143,7 @@ DMAREQ:		RS.W	DMANUM*7	;DMA REQUEST STORE
 		RS.L	1		;OVERRUN
 RAMDMA:		RS.B	200		;RAM DMAS
 PALETTES:	RS.W	16*4		;PALETTE ON SCREEN
+SPRITETEMP:	RS.W	120*4		;TABLE FOR SPRITE DATA(80 SPRITES + 40 OVERRUN)
 
 USERRAM:	RS.B	0
 
@@ -239,6 +268,8 @@ CODESTART:	MOVE.W	#$2700,SR
 		BSR	SETPAL4
 
 		JSR	DUMPCOLS
+
+		JSR	SPRITEINIT
 
 		JSR	USERINIT
 
@@ -715,6 +746,32 @@ DUMPCOLS:	MOVEM.L	D0-D4,-(SP)
 
 		MOVEM.L	(SP)+,D0-D4
 
+		RTS
+
+;----------------------------------------------------------
+;		SPRITE CODE
+;----------------------------------------------------------
+SPRITEINIT:	WREG	5,$7C	;SPRITE ATTRIBUTE TABLE
+
+		LEA.L	VDP_DATA,A1
+		WDEST	VRAMW,$F800
+
+		MOVE.W	#1,(A1)
+		MOVE.W	#0,(A1)
+		MOVE.W	#0,(A1)
+		MOVE.W	#1,(A1)
+
+		LEA.L	SPRITETEMP,A1
+		MOVE.W	#1,(A1)+
+		MOVE.W	#0,(A1)+
+		MOVE.W	#0,(A1)+
+		MOVE.W	#1,(A1)+
+
+		JSR	SPRITEDUMP
+
+		RTS
+
+SPRITEDUMP:	DMADUMP	SPRITETEMP,640,$F800
 		RTS
 
 ;----------------------------------------------------------
