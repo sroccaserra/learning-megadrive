@@ -1,12 +1,22 @@
-Learning how to build Mega Drive games in 68000 assembly.
+Learning how to display Mega Drive graphics in 68000 assembly.
 
-I use the m68k [vasm assembler](http://sun.hasenbraten.de/vasm/index.php?view=main) with Motorola syntax, and the Genesis startup kit from the awesome [Gamehut](https://www.youtube.com/channel/UCfVFSjHQ57zyxajhhRc7i0g) Youtube channel.
+I use the m68k [vasm assembler](http://sun.hasenbraten.de/vasm/index.php?view=main) with Motorola syntax, and the Mega Drive startup kit from the awesome [Gamehut](https://www.youtube.com/channel/UCfVFSjHQ57zyxajhhRc7i0g) Youtube channel.
 
-## Notes
+## Prerequisites
 
-`vasmm68k_mot` was built with these options from [the compilation instructions](http://sun.hasenbraten.de/vasm/index.php?view=compile):
+Download the vasm tarball and build `vasmm68k_mot` with these options from [the compilation instructions](http://sun.hasenbraten.de/vasm/index.php?view=compile):
 
     make CPU=m68k SYNTAX=mot
+
+## Build the .bin file
+
+To build tne .bin file from the assembly code, run:
+
+    make build
+
+## Run the .bin file
+
+Open the .bin file in your favourite Mega Drive emulator, it should display a scrolling checkboard :)
 
 ## References
 
