@@ -1,1 +1,1 @@
-*.bat eol=crlf
+reference/* eol=crlf

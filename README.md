@@ -10,13 +10,13 @@ Download the vasm tarball and build `vasmm68k_mot` with these options from [the 
 
 ## Build the .bin file
 
-To build tne .bin file from the assembly code, run:
+To build tne `bin/learn.bin` file from the assembly source code, run:
 
     make build
 
 ## Run the .bin file
 
-Open the .bin file in your favourite Mega Drive emulator, it should display a scrolling checkboard :)
+Open the generated `bin/learn.bin` file in your favourite Mega Drive emulator, it should display a scrolling checkboard :)
 
 ## References
 

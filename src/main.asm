@@ -2,7 +2,7 @@
 ;		GAMEHUT SHELL
 ;		BY JON BURTON - FEB 2018
 ;----------------------------------------------------------
-		INCLUDE	SYSTEM.S		;INCLUDES LOTS OF SYSTEM CODE TO MAKE ALL THIS POSSIBLE
+		INCLUDE	system.asm		;INCLUDES LOTS OF SYSTEM CODE TO MAKE ALL THIS POSSIBLE
 
 ;----------------------------------------------------------
 ;		VRAM MEMORY MAP IN HEXADECIMAL
