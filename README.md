@@ -10,15 +10,19 @@ Download the vasm tarball and build `vasmm68k_mot` with these options from [the 
 
     make CPU=m68k SYNTAX=mot
 
-## Build the .bin file
+Now you need to have the `vasmm68k_mot` executable in your path somehow, see how it's done on your OS / shell.
 
-To build tne `bin/learn.bin` file from the assembly source code, run:
+## Build the rom.bin file
 
-    make build
+To build the `bin/rom.bin` file from the assembly source code, run:
 
-## Run the .bin file
+    make
 
-Open the generated `bin/learn.bin` file in your favourite Mega Drive emulator, it should display a scrolling checkboard :)
+## Run the rom.bin file
+
+Open the generated `bin/rom.bin` file in your favourite Mega Drive emulator, it should display a scrolling checkboard :)
+
+There is a `run` target in the Makefile, but it won't work for you unless you override the `EMULATOR_PATH`, `EMULATOR_CMD`, and `ROM_PATH` env variables. Chances are you don't have the same emulator installed in the exact same path as I do :)
 
 ## References
 
