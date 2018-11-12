@@ -575,7 +575,7 @@ DMADUMPS:       LEA.L   VDP_CONTROL,A1
 
 @PASS_2:
                 MOVE.W  #$100,Z80REQ
-@L1_DMA:                BTST    #0,Z80REQ
+@L1_DMA:        BTST    #0,Z80REQ
                 BNE.S   @L1_DMA
                 WREG    01,%01110100            ;DMA ENABLE
 
@@ -736,7 +736,7 @@ SETPAL4:        MOVE.W  #16-1,D0
 DUMPCOLS:       MOVEM.L D0-D4,-(SP)
 
                 MOVE.W  #$100,Z80REQ
-@L1_PAL:                BTST    #0,Z80REQ
+@L1_PAL:        BTST    #0,Z80REQ
                 BNE.S   @L1_PAL
                 WREG    01,%01110100            ;DMA ENABLE
                 LEA.L   VDP_CONTROL,A1
