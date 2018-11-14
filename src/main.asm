@@ -141,7 +141,7 @@ CHARGFX:        incbin "bin/char_gfx.bin"
 ;               MAP GRAPHICS
 MAPGFX:         incbin "bin/map_gfx.bin"
 ;               SPRITE GRAPHICS
-SPRITEGFX:      incbin "bin/sprite_gfx.bin"
+SPRITEGFX:      incbin "bin/sprite_gfx.dat"
 ;               USER PALETTES
 PALETTE1:       incbin "bin/palette_1.bin"
 PALETTE2:       incbin "bin/palette_2.bin"
