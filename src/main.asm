@@ -139,7 +139,7 @@ USERVBI:        LEA.L   VDP_DATA,A1
 ;               CHARACTER CODES TO BUILD OUR PATTERN
 CHARGFX:        incbin "bin/char_gfx.bin"
 ;               MAP GRAPHICS
-MAPGFX:         incbin "bin/map_gfx.bin"
+MAPGFX:         incbin "bin/map_gfx.dat"
 ;               SPRITE GRAPHICS
 SPRITEGFX:      incbin "bin/sprite_gfx.dat"
 ;               USER PALETTES

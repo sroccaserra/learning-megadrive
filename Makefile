@@ -1,14 +1,12 @@
 ASM_FILES := $(wildcard src/*.asm)
 HEX_DATA := $(wildcard data/*.hex)
 BIN_DATA = $(HEX_DATA:data/%.hex=bin/%.bin)
-GRAPHICS_SOURCE := $(wildcard data/*.xpm2)
-GRAPHICS_DATA = $(GRAPHICS_SOURCE:data/%.xpm2=bin/%.dat)
+GRAPHICS_SOURCE := $(wildcard data/*.png)
+GRAPHICS_DATA = $(GRAPHICS_SOURCE:data/%.png=bin/%.dat)
 
 REMOVE_COMMENTS = sed 's/;.*$$//g'
 REMOVE_WHITESPACES = tr -d ' \t\n\r\f'
 CONVERT_TO_BIN = xxd -r -p -
-
-REMOVE_XPM2_HEADER = tail -n +19
 
 EMULATOR_PATH ?= /Users/sebastien.roccaserra/Applications/Games/RetroArch.app/Contents/Macos
 EMULATOR_CMD ?= ./RetroArch -L
@@ -23,14 +21,28 @@ bin/%.bin: data/%.hex
 		| $(REMOVE_WHITESPACES) \
 		| $(CONVERT_TO_BIN) $@
 
-bin/%.dat: data/%.xpm2
-	$(REMOVE_XPM2_HEADER) $< \
-		| $(REMOVE_WHITESPACES) \
-		| $(CONVERT_TO_BIN) $@
-
+bin/%.dat: data/%.png requirements
+	source venv/bin/activate; \
+	python tools/convertImage.py $< $@
 
 run: bin/rom.bin
 	cd $(EMULATOR_PATH) && $(EMULATOR_CMD) $(ROM_PATH)
+
+venv:
+	virtualenv -p python3 venv
+
+requirements: venv requirements.txt
+	source venv/bin/activate; \
+	pip install -r requirements.txt
+
+python: venv
+	source venv/bin/activate; \
+	python --version
+
+.PHONY: test
+test:
+	source venv/bin/activate; \
+	pytest -v test
 
 clean:
 	rm bin/*.bin bin/*.dat
