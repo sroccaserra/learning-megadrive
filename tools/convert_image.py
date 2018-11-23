@@ -1,5 +1,5 @@
-import sys
 import binascii
+import sys
 
 from PIL import Image
 
@@ -21,6 +21,7 @@ def main():
     indices = list(im.getdata())
 
     byte_data = to_binary_data(indices)
+
     with open(output_file_name, 'wb') as output_file:
         output_file.write(byte_data)
 

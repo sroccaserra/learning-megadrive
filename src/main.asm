@@ -143,5 +143,5 @@ MAPGFX:         incbin "bin/map_gfx.dat"
 ;               SPRITE GRAPHICS
 SPRITEGFX:      incbin "bin/sprite_gfx.dat"
 ;               USER PALETTES
-PALETTE1:       incbin "bin/palette_1.bin"
-PALETTE2:       incbin "bin/palette_2.bin"
+PALETTE1:       incbin "bin/map_gfx.pal"
+PALETTE2:       incbin "bin/sprite_gfx.pal"
