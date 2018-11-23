@@ -38,9 +38,9 @@ def main():
     output_file_name = sys.argv[2]
 
     im = Image.open(image_file_name)
-    palette_data = list(im.getpalette())[:3*16]
+    sixteen_colors_palette_data = list(im.getpalette())[:3*16]
 
-    hex_string = convert_palette_to_hex(palette_data)
+    hex_string = convert_palette_to_hex(sixteen_colors_palette_data)
     byte_data = binascii.unhexlify(hex_string)
 
     with open(output_file_name, 'wb') as output_file:

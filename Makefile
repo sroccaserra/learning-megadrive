@@ -1,8 +1,10 @@
 ASM_FILES := $(wildcard src/*.asm)
+
 HEX_DATA := $(wildcard data/*.hex)
-BIN_DATA = $(HEX_DATA:data/%.hex=bin/%.bin)
+BIN_DATA = $(HEX_DATA:data/%.hex=bin/%.dat)
+
 GRAPHICS_SOURCE := $(wildcard data/*.png)
-GRAPHICS_DATA = $(GRAPHICS_SOURCE:data/%.png=bin/%.dat)
+GRAPHICS_DATA = $(GRAPHICS_SOURCE:data/%.png=bin/%.gfx)
 PALETTE_DATA = $(GRAPHICS_SOURCE:data/%.png=bin/%.pal)
 
 REMOVE_COMMENTS = sed 's/;.*$$//g'
@@ -16,13 +18,13 @@ ROM_PATH ?= ../Resources/cores/picodrive_libretro.dylib /Users/sebastien.roccase
 bin/rom.bin: $(BIN_DATA) $(ASM_FILES) $(GRAPHICS_DATA) $(PALETTE_DATA)
 	vasmm68k_mot -o bin/rom.bin -Fbin -no-opt -nosym -chklabels src/main.asm
 
-bin/%.bin: data/%.hex
+bin/%.dat: data/%.hex
 	@mkdir -p bin
 	$(REMOVE_COMMENTS) $< \
 		| $(REMOVE_WHITESPACES) \
 		| $(CONVERT_TO_BIN) $@
 
-bin/%.dat: data/%.png requirements
+bin/%.gfx: data/%.png requirements
 	source venv/bin/activate; \
 	python tools/convert_image.py $< $@
 
@@ -50,4 +52,4 @@ test:
 	pytest -vv test
 
 clean:
-	rm bin/*.bin bin/*.dat bin/*.pal
+	rm -f bin/rom.bin $(BIN_DATA) $(GRAPHICS_DATA) $(PALETTE_DATA)
