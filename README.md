@@ -10,7 +10,7 @@ Download the vasm tarball and build `vasmm68k_mot` with these options from [the 
 
     make CPU=m68k SYNTAX=mot
 
-Now you need to have the `vasmm68k_mot` executable in your path somehow, see how it's done on your OS / shell.
+Now you need to have the `vasmm68k_mot` executable in your path somehow, see how it's done depending on your OS / shell.
 
 ## Build the rom.bin file
 
@@ -26,7 +26,8 @@ There is a `run` target in the Makefile, but it won't work for you unless you ov
 
 ## References
 
+- The three parts tutorial by Jon Burton, see the `reference/` directory and the "How to Code!" videos:
+    - https://www.youtube.com/playlist?list=PLi29TNPrdbwLmUjiVvLLrRky7cXrlSIYr
 - vasm assembler: <http://sun.hasenbraten.de/vasm/index.php?view=main>
-- Startup kit: <https://www.youtube.com/watch?v=PSYhSmXBgIw>
 - 68000 instructions tutorial: <http://mrjester.hapisan.com/04_MC68/Index.html>
 - Another Mega Drive tutorial: <https://huguesjohnson.com/programming/genesis/palettes/>
