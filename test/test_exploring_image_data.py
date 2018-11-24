@@ -2,14 +2,15 @@ from PIL import Image
 
 
 class TestExploringImageData:
+    def setup_method(self):
+        self.image = Image.open('test/test_indexed.png')
+
     def test_loading_indices(self):
-        im = Image.open('test/test.png')
-        indices = list(im.getdata())
+        indices = list(self.image.getdata())
         assert indices == [0, 1, 2, 3]
 
     def test_extracting_palette(self):
-        im = Image.open('test/test.png')
-        first_16_colors = im.getpalette()[:3*16]
+        first_16_colors = self.image.getpalette()[:3*16]
         assert first_16_colors == [
                 24, 20, 12,
                 244, 240, 232,
