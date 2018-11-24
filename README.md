@@ -26,8 +26,11 @@ There is a `run` target in the Makefile, but it won't work for you unless you ov
 
 ## References
 
-- The three parts tutorial by Jon Burton, see the `reference/` directory and the "How to Code!" videos:
-    - https://www.youtube.com/playlist?list=PLi29TNPrdbwLmUjiVvLLrRky7cXrlSIYr
+- The three parts tutorial by Jon Burton, see the [doc/Gamehut](doc/Gamehut) directory and the [How to Code!][htc] videos
 - vasm assembler: <http://sun.hasenbraten.de/vasm/index.php?view=main>
+    - [vasm docs](http://sun.hasenbraten.de/vasm/release/vasm.html)
+    - [Mot Syntax Module](http://sun.hasenbraten.de/vasm/release/vasm_4.html)
 - 68000 instructions tutorial: <http://mrjester.hapisan.com/04_MC68/Index.html>
 - Another Mega Drive tutorial: <https://huguesjohnson.com/programming/genesis/palettes/>
+
+[htc]: https://www.youtube.com/playlist?list=PLi29TNPrdbwLmUjiVvLLrRky7cXrlSIYr
