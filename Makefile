@@ -12,8 +12,8 @@ REMOVE_WHITESPACES = tr -d ' \t\n\r\f'
 CONVERT_TO_BIN = xxd -r -p -
 
 EMULATOR_PATH ?= /Users/sebastien.roccaserra/Applications/Games/RetroArch.app/Contents/Macos
-EMULATOR_CMD ?= ./RetroArch -L
-ROM_PATH ?= ../Resources/cores/picodrive_libretro.dylib /Users/sebastien.roccaserra/Developer/learn-mega-drive/bin/rom.bin
+EMULATOR_CMD ?= ./RetroArch -L ../Resources/cores/picodrive_libretro.dylib
+ROM_PATH ?= /Users/sebastien.roccaserra/Developer/learning-megadrive/bin/rom.bin
 
 bin/rom.bin: $(BIN_DATA) $(ASM_FILES) $(GRAPHICS_DATA) $(PALETTE_DATA)
 	vasmm68k_mot -o bin/rom.bin -Fbin -no-opt -nosym -chklabels src/main.asm
@@ -33,7 +33,8 @@ bin/%.pal: data/%.png requirements
 	python tools/convert_palette.py $< $@
 
 run: bin/rom.bin
-	cd $(EMULATOR_PATH) && $(EMULATOR_CMD) $(ROM_PATH)
+	cd $(EMULATOR_PATH) && \
+		$(EMULATOR_CMD) $(ROM_PATH)
 
 venv:
 	virtualenv -p python3 venv
